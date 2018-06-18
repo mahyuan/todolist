@@ -1,0 +1,7 @@
+dist
+node_modules
+*.log
+.idea
+.vscode
+*.swp
+.SD_Store
