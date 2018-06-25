@@ -1,7 +1,12 @@
-dist
-node_modules
-*.log
+.DS_Store
+node_modules/
+dist/
+npm-debug.log
+yarn-error.log
+
+# Editor directories and files
 .idea
-.vscode
-*.swp
-.SD_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln

@@ -1,31 +1,18 @@
-# TodoList
+# vue-webpack-sim
 
-It's a web app with Vue&webpack
+> A Vue.js project
 
-### [demo](http://mhynet.cn/todolist)
+## Build Setup
 
-## UI
+``` bash
+# install dependencies
+npm install
 
-![](https://github.com/mhy-web/Vue-app/blob/master/todolist/todolist.jpg)
+# serve with hot reload at localhost:8080
+npm run dev
 
-#How to use it
+# build for production with minification
+npm run build
+```
 
-- clone the reppsitory
-
-
-`git@github.com:mhy-web/todolist.git`
-
-
-- Enter project folder
-
-`cd todolist`
-
-- Install dependency
-
-`npm install`
-
-- Run webpack
-
-`webpack`
-
-- Open it in your browser and enjoy it!
+For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
