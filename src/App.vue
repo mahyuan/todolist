@@ -1,9 +1,42 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-		<button @click="insert"></button>
-		<button @click="edit"></button>
+		<el-row>
+			<el-col :span="24">
+				<!-- <el-col :span="6">
+					<div class="grid-content bg-purple">
+					<button @click="insert"></button>
+					</div></el-col>
+				<el-col :span="6">
+					<div class="grid-content bg-purple-light">
+						<button @click="insert"></button>
+					</div>
+				</el-col>
+				<el-col :span="6">
+					<div class="grid-content bg-purple">
+						<button @click="insert"></button>
+					</div>
+				</el-col> -->
+				<el-col :span="24">
+					<div class="grid-content bg-purple-light">
+						<el-button type="text" @click="showInsertModal=true">新建</el-button>
+						<!-- <button @click="insert"></button> -->
+					</div>
+				</el-col>
+
+			</el-col>
+
+		</el-row>
+		<el-row :span="24">
+			<el-col :span="12">
+				<div class="msg">{{ msg }}</div>
+			</el-col>
+
+		</el-row>
+    <!--<img src="./assets/logo.png">-->
+
+		<insert @insert="insert"></insert>
+		<list></list>
+
   </div>
 </template>
 
@@ -19,24 +52,28 @@ export default {
 			dbName: 'testDB',
 			version: 1,
 			tableName: 'table1',
-
+			showInsertModal: false
 		}
 	},
 	methods: {
+		addEvt: function(item) {
+			this.showInsertModal = false;
+			this.insert(item);
+		},
 		init: function() {
 			if(!this.indexedDB) {
-				window.alert("your browser doesn't support IndexedDB")
+				window.alert("your browser doesn't support IndexedDB");
 			} else {
 				let DBOpenRequest = this.indexedDB.open(this.dbName, this.version);
 
 				DBOpenRequest.onsuccess = function(evt) {
 					this.DB = evt.target.result;
-					this.msg = 'open indexedDB successful'
+					this.msg = 'open indexedDB successful';
 				}.bind(this);
 
 				DBOpenRequest.onerror = function(evt) {
 					this.msg = 'open indexedDB failed';
-					throw error(evt)
+					throw error(evt);
 				};
 
 				DBOpenRequest.onupgradeneeded = function(evt) {
@@ -60,7 +97,6 @@ export default {
 					objectStore.createIndex("isFiltered", "isFiltered");
 				}.bind(this);
 			}
-
 		},
 		insert: function(item) {
 			let transaction = this.DB.transaction(this.dbName, "readwrite");
@@ -105,7 +141,7 @@ export default {
 					}
 
 					this.msg = `searching, get item of ${cursor.value}`;
-					cursor.continue()
+					cursor.continue();
 				} else {
 					this.msg = `search data finished`;
 				}
@@ -120,7 +156,7 @@ export default {
 
 			getRequest.onsuccess = function(evt) {
 				let record = evt.target.result;
-				this.msg = 'get recoded successful'
+				this.msg = 'get recoded successful';
 			}.bind(this);
 
 			let deleteRequest = objectStore.delete(removeKey);
@@ -140,45 +176,90 @@ export default {
 			deleteRequest.onsuccess = function(evt) {
 				this.msg = `delete databases of \"${dbName}\" successful`
 			}.bind(this);
+		},
+		fontSize: function() {
+			let w = document.documentElement.clientWidth;
+			if (w > 1200) document.getElementsByTagName('html')[0].style.fontSize = 417 + '%';
+			else document.getElementsByTagName('html')[0].style.fontSize = 625*w/750+'%';
+			console.log(w);
 		}
-
-
+	},
+	beforeMount() {
 
 	},
 	mounted() {
 		this.$nextTick(() => {
 			//console.log(this);
 			this.init();
+			this.fontSize();
 		})
 	}
 }
+
+
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="less">
+	@import "./assets/common.less";
+	#app {
+		font-family: 'Avenir', Helvetica, Arial, sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-align: center;
+		color: #2c3e50;
+	}
 
-h1, h2 {
-  font-weight: normal;
-}
+	h1, h2 {
+		font-weight: normal;
+	}
+	.msg {
+		/* font-size: .26rem; */
+		font-size: 20px;
+	}
+	ul {
+		list-style-type: none;
+		padding: 0;
+	}
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+	li {
+		display: inline-block;
+	}
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
+	a {
+		color: #42b983;
+	}
+	button{
+		height: 30px;
+		font-size: 25px;
+		line-height: 30px;
+		outline: none;
+		border: none;
+	}
+	@import url("//unpkg.com/element-ui@2.4.2/lib/theme-chalk/index.css");
+	.el-row {
+    margin-bottom: 20px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .el-col {
+    border-radius: 4px;
+  }
+  .bg-purple-dark {
+    background: #99a9bf;
+  }
+  .bg-purple {
+    background: #d3dce6;
+  }
+  .bg-purple-light {
+    background: #e5e9f2;
+  }
+  .grid-content {
+    border-radius: 4px;
+    min-height: 36px;
+  }
+  .row-bg {
+    padding: 10px 0;
+    background-color: #f9fafc;
+  }
 </style>
