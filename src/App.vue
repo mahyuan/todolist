@@ -34,7 +34,7 @@
 		</el-row>
     <!--<img src="./assets/logo.png">-->
 
-		<insert @insert="insert"></insert>
+		<insert @addNewTask="addEvt" :showInsertModal="showInsertModal"></insert>
 		<list></list>
 
   </div>

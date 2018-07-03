@@ -1,7 +1,24 @@
 <template>
-	<div class="container-inert">
-		<label for="task">task</label>
-		<input name="task" type="text"/>
+	<div class="container-insert">
+		<el-button type="text" @click="show = true">打开嵌套表格的 Dialog</el-button>
+		<el-dialog
+			title="insert title"
+			:visible.sync="show"
+			width="30%"
+			:before-close="handleClose"
+		>
+			<span>enen</span>
+			<el-form :model="info">
+				<el-form-item label="task" :label-width="'100px'">
+					<el-input v-model="task" auto-complete="off"></el-input>
+
+				</el-form-item>
+			</el-form>
+			<div class="dialog-footer">
+				<el-button @click="show=false">取消</el-button>
+				<el-button @click="confim">确定</el-button>
+			</div>
+		</el-dialog>
 	</div>
 </template>
 <script>
@@ -11,25 +28,46 @@ export default {
 		return {
 			info: {
 				task: '',
-				create_time: new Date().getTime(),
+				create_time: null,
 				modify_time: null,
 				finish_time: null,
 				isFinished: false,
 				isFiltered: false
 			},
-
+			show: false,
+			task: '',
 
 		}
 	},
+	props: ["showInsertModal"],
 	methods: {
-		insert: function() {
-			this.$emit(insert, this.info)
+		handleClose: function() {
+
+		},
+		confim: function() {
+			this.show = false;
+			let detail = Object.assign({}, this.info, {
+				task: this.task,
+				create_time: new Date().getTime(),
+			});
+
+			this.$emit( 'addNewTask', detail );
+			this.task = '';
 		}
-	}
+
+	},
+	mounted() {
+		if ( this.showInsertModal ) this.show = true;
+	},
+	watch: {
+		showInsertModal: function(value, oldValue) {
+			if(value && !oldValue ) this.show = true;
+		}
+	},
 }
 </script>
 <style lang="less" scoped>
-.container-inert{
+.container-insert{
 	width: 100%;
 	height: 2rem;
 	font-size: .25rem;
