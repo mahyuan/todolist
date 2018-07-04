@@ -35,7 +35,8 @@
     <!--<img src="./assets/logo.png">-->
 
 		<insert @addNewTask="addEvt" :showInsertModal="showInsertModal"></insert>
-		<list></list>
+
+		<list :list="list"></list>
 
   </div>
 </template>
@@ -52,8 +53,9 @@ export default {
 			dbName: 'testDB',
 			version: 1,
 			tableName: 'table1',
-			showInsertModal: false
-		}
+			showInsertModal: false,
+			list: []
+		};
 	},
 	methods: {
 		addEvt: function(item) {
@@ -96,6 +98,8 @@ export default {
 					objectStore.createIndex("isFinished", "isFinished");
 					objectStore.createIndex("isFiltered", "isFiltered");
 				}.bind(this);
+
+				
 			}
 		},
 		insert: function(item) {
@@ -124,28 +128,37 @@ export default {
 				this.msg = 'get objectStoreRequest failed';
 			}.bind(this);
 		},
-		search: function() {
-			let transaction = this.DB.transaction(this.dbName, "readwrite");
+		searchAll: function() {
+			let transaction = this.DB.transaction([this.dbName], "readwrite");
 			let objectStore = transaction.objectStore(this.dbName);
-			let boundKeyRange = this.IDBKeyRange.only(curName); //  生成一个表示范围的Range对象
 
-			objectStore.openCursor(boundKeyRange).onsuccess = function(evt) {
-				this.msg = `openCursor event successed!`;
-				let cursor = evt.target.result;
+			// let boundKeyRange = this.IDBKeyRange.only(curName); // 表示范围的Range对象
+			// if (!all) {
+				objectStore.openCursor().onsuccess = function(evt) {
+					this.msg = `openCursor event successed!`;
+					let cursor = evt.target.result;
 
-				if(cursor) {
-					let index = this.result.findIndex(it => it.id === cursor.value.id);
-					//console.log(index)
-					if(index < 0) {
-						this.result.push(cursor.value);
+					if(cursor) {
+						let item = cursor.value
+						let index = this.list.findIndex(it => it.id === item.id);
+
+						if(index < 0) {
+							item.createTime = this.timeFormate(item.create_time);
+							if(item.finish_time && typeof item.finish_time === 'number') {
+								item.finishedTime = this.timeFormate(item.finish_time)
+							}
+							this.list.push(item);
+						}
+
+						this.msg = `searching, get item of ${cursor.value}`;
+						cursor.continue();
+					} else {
+						this.msg = `search data finished`;
+						console.log('list', this.list);
 					}
-
-					this.msg = `searching, get item of ${cursor.value}`;
-					cursor.continue();
-				} else {
-					this.msg = `search data finished`;
-				}
-			}.bind(this);
+				
+				}.bind(this);
+			// }
 		},
 		deleterecord: function(id) {
 			let transaction = this.DB.transaction(this.dbName, "readwrite");
@@ -182,17 +195,35 @@ export default {
 			if (w > 1200) document.getElementsByTagName('html')[0].style.fontSize = 417 + '%';
 			else document.getElementsByTagName('html')[0].style.fontSize = 625*w/750+'%';
 			console.log(w);
+		},
+		timeFormate: function(t) {
+			if(typeof t === 'number') {
+				let time = new Date(parseInt(t));
+				let y, m, d, h, min, s;
+
+				function f(it) {
+					return it < 0 ? '0' + it : it;
+				}
+				
+				y = time.getFullYear();
+				m = time.getMonth() + 1;
+				d = time.getDate();
+				h = time.getHours();
+				min = time.getMinutes();
+				s = time.getSeconds();
+
+				return `${y}/${m}/${d}/ ${f(h)}:${f(min)}:${f(s)}`;
+			}
 		}
 	},
 	beforeMount() {
-
-	},
+		},
 	mounted() {
-		this.$nextTick(() => {
-			//console.log(this);
-			this.init();
-			this.fontSize();
-		})
+		this.init();
+		setTimeout(() => {
+			this.searchAll();
+		}, 1000);
+		// this.insert();
 	}
 }
 

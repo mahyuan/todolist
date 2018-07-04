@@ -1,8 +1,54 @@
 <template>
 	<div>
-		<el-row class="col">
-			<el-button type="text" @click="showInsertModal=true">编辑</el-button>
-		</el-row>
+		<!-- <el-row class="col"> -->
+			<!-- <el-button type="text" @click="showInsertModal=true">编辑</el-button> -->
+
+		<!-- </el-row> -->
+			<el-table
+				:data="list"
+				style="width: 100%"
+				border
+			>
+				<!-- v-for="(item, index) in list" -->
+				<!-- :row-class-name="tableRowClassName" -->
+				<el-table-column
+					prop="id"
+					label="id"
+					width="50"
+				></el-table-column>
+				<el-table-column
+					prop="task"
+					label="task"
+					width="400"
+				></el-table-column>
+				<el-table-column label="状态">
+					<el-table-column
+						prop="createTime"
+						label="createTime"
+						width="300"
+					></el-table-column>
+						<el-table-column
+						prop="finishedTime"
+						label="finishedTime"
+						width="150"
+					></el-table-column>
+					<el-table-column
+						prop="isFinished"
+						label="isFinished"
+						width="100"
+					></el-table-column>
+						<!-- <el-table-column
+						prop="isFiltered"
+						label="isFiltered"
+						width="100"
+					></el-table-column> -->
+					<el-table-column
+						prop=""
+						label="编辑"
+						width="100"
+					></el-table-column>
+				</el-table-column>
+			</el-table>
 	</div>
 </template>
 <script>
@@ -10,15 +56,43 @@
 		name: 'insert',
 		data() {
 			return {
+				// info: [],
+				// tableData: [
+				// 	{
+				// 		id: null,
+				// 		task: '',
+				// 		create_time: '',
+				// 		modify_time: '',
+				// 		isFinished: false,
+				// 		isFiltered: false
+				// 	}
+				// ],
 
-			}
+			};
 		},
+		props: ['list'],
 		methods: {
-
-		}
+			// format: function() {
+			// 	if(this.list.length) {
+			// 		this.info = this.list.map( (item) => {
+			// 			item.createTime = new Date(item.create_time);
+			// 			if(item.finish_time && typeof item.finish_time === 'number') {
+			// 				ite.finishedTime = new Date(item.finish_time)
+			// 			}
+			// 			return item
+			// 		})
+			// 	}
+			// }
+		},
 	}
 </script>
 <style lang="less" scoped>
+  .el-table .warning-row {
+    background: oldlace;
+  }
 
+  .el-table .success-row {
+    background: #f0f9eb;
+  }
 </style>
 
