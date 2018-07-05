@@ -1,12 +1,28 @@
+<style lang="less" scoped>
+	.table-content {
+		display: block;
+		margin: 0 auto;
+		width: 80%;
+		text-align: left;
+		// margin-left: auto;
+	}
+  .el-table .warning-row {
+    background: oldlace;
+  }
+
+  .el-table .success-row {
+    background: #f0f9eb;
+  }
+</style>
 <template>
-	<div>
+	<div class="table-content">
 		<!-- <el-row class="col"> -->
 			<!-- <el-button type="text" @click="showInsertModal=true">编辑</el-button> -->
 
 		<!-- </el-row> -->
 			<el-table
 				:data="list"
-				style="width: 100%"
+				style="width: 100%;"
 				border
 			>
 				<!-- v-for="(item, index) in list" -->
@@ -19,7 +35,6 @@
 				<el-table-column
 					prop="task"
 					label="task"
-					width="400"
 				></el-table-column>
 				<el-table-column label="状态">
 					<el-table-column
@@ -86,13 +101,3 @@
 		},
 	}
 </script>
-<style lang="less" scoped>
-  .el-table .warning-row {
-    background: oldlace;
-  }
-
-  .el-table .success-row {
-    background: #f0f9eb;
-  }
-</style>
-
