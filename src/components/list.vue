@@ -6,13 +6,13 @@
 		margin-left: auto;
 		margin-right: 0;
 		text-align: center;
+		.el-table .warning-row {
+			background: oldlace;
+		}
+		.el-table .success-row {
+			background: #f0f9eb;
+		}
 	}
-  .el-table .warning-row {
-    background: oldlace;
-  }
-  .el-table .success-row {
-    background: #f0f9eb;
-  }
 </style>
 <template>
 	<div class="table-content">

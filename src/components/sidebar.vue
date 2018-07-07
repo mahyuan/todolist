@@ -5,11 +5,14 @@
 		height: auto;
 		background: #353f55;
 		color: #eee;
+		.side-subheder {
+			display: inline-block;
+			text-align: left;
+		}
 	}
 </style>
 <template>
 	<section class="sidebar">
-			<h1 class="side-header">TodoList</h1>
 			<h3 class="side-subheder">筛选</h3>
 			<ul class="side-filtercontent">
 				<li class="filterbar"><i class="iconfont">&#xe60f;</i>全部</li>
