@@ -1,4 +1,4 @@
-<style lang="less" scoped>
+<style lang="less">
 	.sidebar {
 		display: block;
 		width: 20%;
@@ -22,6 +22,8 @@
 		</section>
 </template>
 <script>
+	// require('assets/font/iconfont.css')
+
 	export default {
 		name: 'sidebar',
 		data: function() {

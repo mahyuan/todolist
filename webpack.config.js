@@ -52,14 +52,17 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      'vue$': 'vue/dist/vue.esm.js',
+			'components': path.join(__dirname, 'src/components'),
+			'assets':  path.join(__dirname, 'src/assets'),
     },
     extensions: ['*', '.js', '.vue', '.json']
   },
   devServer: {
     historyApiFallback: true,
     noInfo: true,
-    overlay: true
+    overlay: true,
+		port: 8082
   },
   performance: {
     hints: false

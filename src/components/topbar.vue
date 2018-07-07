@@ -7,7 +7,6 @@
 		width: 100%;
 		height: 80px;
 		color: #000;
-		border-bottom: 1px solid #d8bebe;
 		z-index: 9;
 		.content {
 			position: relative;
@@ -16,6 +15,8 @@
 			line-height: 80px;
 			color: #333;
 			box-sizing: border-box;
+			border-bottom: 1px solid #d8bebe;
+			background: rgba(238, 238, 238, 0.858);
 			overflow: hidden;
 			.nav-item {
 				display: inline-block;
@@ -52,12 +53,13 @@
 </template>
 <script>
 	export default {
-		name: 'header',
+		name: 'topbar',
 		data: function () {
 			return {
-				input: ''
+				input: '',
 			}
 		},
+		props: [],
 		methods: {
 
 		}

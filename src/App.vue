@@ -110,7 +110,7 @@
 </style>
 <template>
 	<div id="app">
-		<Header></Header>
+		<topbar></topbar>
 		<div class="content">
 			<Sidebar></Sidebar>
 			<section class="main">
@@ -126,10 +126,10 @@
 	</div>
 </template>
 <script>
-	import Header from './components/header.vue'
-	import Sidebar from './components/sidebar'
-	import Insert from './components/insert.vue';
-	import List from './components/list.vue';
+	import topbar from 'components/topbar'
+	import Sidebar from 'components/sidebar'
+	import Insert from 'components/insert';
+	import List from 'components/list';
 
 	export default {
 		name: 'app',
@@ -148,7 +148,7 @@
 			};
 		},
 		components: {
-			Header,
+			topbar,
 			Sidebar,
 			Insert,
 			List

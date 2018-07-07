@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import App from './App.vue';
+import App from './App';
 // import Header from './components/header.vue'
 // import Sidebar from './components/sidebar'
 // import Insert from './components/insert.vue';
