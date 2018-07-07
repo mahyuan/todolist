@@ -1,5 +1,5 @@
 <style lang="less">
-	@import "./assets/common.less";
+	@import "../assets/common.less";
 	#app {
 		position: relative;
 		width: 1200px;

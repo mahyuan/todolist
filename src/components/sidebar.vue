@@ -22,7 +22,6 @@
 		</section>
 </template>
 <script>
-	// require('assets/font/iconfont.css')
 
 	export default {
 		name: 'sidebar',
