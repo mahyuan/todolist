@@ -1,6 +1,6 @@
 <template>
 	<div class="container-insert">
-		<el-button type="text" @click="show = true">打开嵌套表格的 Dialog</el-button>
+		<el-button type="text" @click="show = true">新建</el-button>
 		<el-dialog
 			title="insert title"
 			:visible.sync="show"
@@ -54,7 +54,6 @@ export default {
 			this.$emit( 'addNewTask', detail );
 			this.task = '';
 		}
-
 	},
 	mounted() {
 		if ( this.showInsertModal ) this.show = true;

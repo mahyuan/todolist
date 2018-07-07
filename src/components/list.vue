@@ -2,14 +2,14 @@
 	.table-content {
 		display: block;
 		margin: 0 auto;
-		width: 80%;
-		text-align: left;
-		// margin-left: auto;
+		width: 98%;
+		margin-left: auto;
+		margin-right: 0;
+		text-align: center;
 	}
   .el-table .warning-row {
     background: oldlace;
   }
-
   .el-table .success-row {
     background: #f0f9eb;
   }

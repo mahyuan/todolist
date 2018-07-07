@@ -1,18 +1,20 @@
-
 <style lang="less">
 	@import "./assets/common.less";
 	#app {
+		position: relative;
+		width: 1200px;
+		margin: 0 auto;
+		color: #2c3e50;
 		font-family: 'Avenir', Helvetica, Arial, sans-serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-align: center;
-		color: #2c3e50;
-		padding-left: auto;
-		padding-right: auto;
 	}
 
 	h1, h2 {
 		font-weight: normal;
+		margin: 0;
+		padding: 0;
 	}
 	.msg {
 		/* font-size: .26rem; */
@@ -21,6 +23,7 @@
 	ul {
 		list-style-type: none;
 		padding: 0;
+		margin: 0;
 	}
 
 	li {
@@ -36,6 +39,14 @@
 		line-height: 30px;
 		outline: none;
 		border: none;
+	}
+	.clearfix::after {
+		position: absolute;
+		content: '';
+		display: block;
+		overflow: hidden;
+		clear: both;
+		zoom: 1;
 	}
 	@import url("//unpkg.com/element-ui@2.4.2/lib/theme-chalk/index.css");
 	.el-row {
@@ -64,57 +75,61 @@
     padding: 10px 0;
     background-color: #f9fafc;
   }
+
+	.content {
+		position: relative;
+		display: flex;
+		width: 100%;
+		margin-top: 100px;
+	}
+
+	.main {
+		position: relative;
+		display: block;
+		width: 80%;
+	}
+	// .icon-secrch {
+	// 	border: 1px solid #eee;
+	// }
+	.msg {
+		margin-left: 2%;
+		border-bottom: 1px solid #ccc;
+	}
+
 </style>
-
-
 <template>
   <div id="app">
-		<el-row>
-			<el-col :span="24">
-				<!-- <el-col :span="6">
-					<div class="grid-content bg-purple">
-					<button @click="insert"></button>
-					</div></el-col>
-				<el-col :span="6">
-					<div class="grid-content bg-purple-light">
-						<button @click="insert"></button>
-					</div>
-				</el-col>
-				<el-col :span="6">
-					<div class="grid-content bg-purple">
-						<button @click="insert"></button>
-					</div>
-				</el-col> -->
-				<el-col :span="24">
-					<div class="grid-content bg-purple-light">
-						<el-button type="text" @click="showInsertModal=true">新建</el-button>
-						<!-- <button @click="insert"></button> -->
-					</div>
-				</el-col>
+		<Header></Header>
+		<!-- sidebar left -->
+		<div class="content">
+			<Sidebar></Sidebar>
+			<!-- content -->
+			<section class="main">
+				<el-row :span="24" class="msg">
+					<el-col :span="12">
+						<div class="msg">{{ msg }}</div>
+					</el-col>
 
-			</el-col>
-
-		</el-row>
-		<el-row :span="24">
-			<el-col :span="12">
-				<div class="msg">{{ msg }}</div>
-			</el-col>
-
-		</el-row>
-    <!--<img src="./assets/logo.png">-->
-
-		<insert @addNewTask="addEvt" :showInsertModal="showInsertModal"></insert>
-
-		<list :list="list"></list>
-
+				</el-row>
+				<List :list="list"></List>
+			</section>
+		</div>
+		<Insert @addNewTask="addEvt" :showInsertModal="showInsertModal"></Insert>
   </div>
+
 </template>
 
 <script>
+import Header from './components/header.vue'
+import Sidebar from './components/sidebar'
+import Insert from './components/insert.vue';
+import List from './components/list.vue';
+
 export default {
   name: 'app',
 	data() {
 		return {
+			input: '',
 			msg: 'App start',
 			info: [],
 			DB: '',
@@ -126,6 +141,7 @@ export default {
 			list: []
 		};
 	},
+	components: {Header, Sidebar, Insert, List},
 	methods: {
 		addEvt: function(item) {
 			this.showInsertModal = false;
@@ -168,7 +184,7 @@ export default {
 					objectStore.createIndex("isFiltered", "isFiltered");
 				}.bind(this);
 
-				
+
 			}
 		},
 		insert: function(item) {
@@ -225,7 +241,7 @@ export default {
 						this.msg = `search data finished`;
 						console.log('list', this.list);
 					}
-				
+
 				}.bind(this);
 			// }
 		},
@@ -273,7 +289,7 @@ export default {
 				function f(it) {
 					return it < 0 ? '0' + it : it;
 				}
-				
+
 				y = time.getFullYear();
 				m = time.getMonth() + 1;
 				d = time.getDate();
