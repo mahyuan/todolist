@@ -16,17 +16,11 @@
 </style>
 <template>
 	<div class="table-content">
-		<!-- <el-row class="col"> -->
-			<!-- <el-button type="text" @click="showInsertModal=true">编辑</el-button> -->
-
-		<!-- </el-row> -->
 			<el-table
 				:data="list"
 				style="width: 100%;"
 				border
 			>
-				<!-- v-for="(item, index) in list" -->
-				<!-- :row-class-name="tableRowClassName" -->
 				<el-table-column
 					prop="id"
 					label="id"
@@ -52,11 +46,6 @@
 						label="isFinished"
 						width="100"
 					></el-table-column>
-						<!-- <el-table-column
-						prop="isFiltered"
-						label="isFiltered"
-						width="100"
-					></el-table-column> -->
 					<el-table-column
 						prop=""
 						label="编辑"
