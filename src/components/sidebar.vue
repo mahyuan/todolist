@@ -27,7 +27,8 @@
 		name: 'sidebar',
 		data: function() {
 			return {
-
+				title: "",
+				date: ""
 			}
 		},
 		methods: {
