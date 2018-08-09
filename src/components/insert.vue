@@ -18,7 +18,6 @@
 			<el-form :model="info">
 				<el-form-item label="task" :label-width="'100px'">
 					<el-input v-model="task" auto-complete="off"></el-input>
-
 				</el-form-item>
 			</el-form>
 			<div class="dialog-footer">
