@@ -1,13 +1,22 @@
 <style lang="less">
+	@import "../../assets/font/iconfont.css";
 	.sidebar {
 		display: block;
 		width: 20%;
 		height: auto;
 		background: #353f55;
 		color: #eee;
+		padding: 0 5%;
+    box-sizing: border-box;
 		.side-subheder {
 			display: inline-block;
 			text-align: left;
+		}
+		.side-filtercontent {
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+
 		}
 	}
 </style>

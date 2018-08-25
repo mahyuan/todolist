@@ -47,13 +47,19 @@ module.exports = {
         options: {
           name: '[name].[ext]?[hash]'
         }
-      }
+			},
+			{
+				test: /\.(woff|svg|eot|ttf)\??.*$/,
+				loader: 'url-loader?name=fonts/[name].[md5:hash:hex:7]/[ext]',
+				exclude: /node_modules/
+			}
     ]
   },
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-			'components': path.join(__dirname, 'src/components')
+			'components': path.join(__dirname, 'src/components'),
+			'assets': path.join(__dirname, 'src/assets')
     },
     extensions: ['*', '.js', '.vue', '.json']
   },
