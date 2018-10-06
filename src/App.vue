@@ -99,7 +99,8 @@
 		position: relative;
 		display: block;
 		width: 80%;
-	} // .icon-secrch {
+	} 
+	// .icon-secrch {
 	// 	border: 1px solid #eee;
 	// }
 	.msg {

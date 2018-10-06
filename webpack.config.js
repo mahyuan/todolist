@@ -2,6 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
+  mode: 'development',
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -29,12 +30,7 @@ module.exports = {
 			},
 			{
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loaders: {
-          }
-          // other vue-loader options go here
-        }
+        loader: 'vue-loader'
       },
       {
         test: /\.js$/,
@@ -67,7 +63,7 @@ module.exports = {
     historyApiFallback: true,
     noInfo: true,
     overlay: true,
-		port: 8082
+		port: 4002
   },
   performance: {
     hints: false
