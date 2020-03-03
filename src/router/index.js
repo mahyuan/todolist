@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import list from '@/views/list'
-// import insert from '@/views/insert'
 import layout from '@/layout/index'
 
 Vue.use(Router)
@@ -25,8 +23,9 @@ const routes = [
 ]
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
   routes,
+  base: '/todolist/',
   linkActiveClass: 'active',
   linkExactActiveClass: 'active'
 })

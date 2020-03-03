@@ -2,7 +2,7 @@
   <div class="content">
     <div class="form">
       <el-form ref="form" inline :model="params">
-        <el-form-item label="Task" prop="task">
+        <!-- <el-form-item label="Task" prop="task">
           <el-input v-model="params.task" clearable />
         </el-form-item>
         <el-form-item label="截止时间" prop="deadline">
@@ -12,18 +12,18 @@
             placeholder="选择日期时间"
             default-time="12:00:00"
           />
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item>
           <el-button
             type="primary"
             icon="el-icon-search"
             @click="handleSearch"
           >搜索</el-button>
-          <el-button
+          <!-- <el-button
             plain
             icon="el-icon-refresh"
             @click="hanlleReset"
-          >重置</el-button>
+          >重置</el-button> -->
         </el-form-item>
         <el-button
           type="primary"
@@ -113,7 +113,6 @@
     </div>
 
     <el-dialog
-      title="insert title"
       :visible.sync="modelShow"
       width="600px"
       :before-close="handleClose"
