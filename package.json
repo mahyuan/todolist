@@ -10,6 +10,8 @@
     "dev": "npm run serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "deploy": "npm run build && ./deploy.sh",
+    "upload": "./deploy.sh",
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
