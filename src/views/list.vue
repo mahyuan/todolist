@@ -13,13 +13,13 @@
             default-time="12:00:00"
           />
         </el-form-item> -->
-        <el-form-item>
+        <!-- <el-form-item>
           <el-button
             type="primary"
             icon="el-icon-search"
             @click="handleSearch"
-          >搜索</el-button>
-          <!-- <el-button
+          >搜索</el-button> -->
+        <!-- <el-button
             plain
             icon="el-icon-refresh"
             @click="hanlleReset"
@@ -60,7 +60,7 @@
           prop="create_time"
           label="创建时间"
           align="center"
-          width="90"
+          width="120"
         >
           <template slot-scope="props">
             <span>{{ props.row.create_time | formate }}</span>
@@ -70,7 +70,7 @@
           prop="update_time"
           label="更新时间"
           align="center"
-          width="80"
+          width="120"
         >
           <template slot-scope="props">
             <span>{{ props.row.update_time | formate }}</span>
@@ -80,7 +80,7 @@
           prop="finish_time"
           label="完成时间"
           align="center"
-          width="80"
+          width="120"
         >
           <template slot-scope="props">
             <span>{{ props.row.finish_time | formate }}</span>

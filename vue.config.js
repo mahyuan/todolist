@@ -4,8 +4,8 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 module.exports = {
-  publicPath: '/todolist/',
-  // publicPath: '/',
+  // publicPath: '/todolist/',
+  publicPath: '/',
   outputDir: 'dist',
   assetsDir: 'static',
   productionSourceMap: false,
