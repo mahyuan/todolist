@@ -1,6 +1,6 @@
-# vue-webpack-sim
+# todolist
 
-> A Vue.js project
+> A indexedDB demo with vue
 
 ## Build Setup
 
