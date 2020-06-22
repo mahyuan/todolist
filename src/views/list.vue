@@ -276,6 +276,7 @@ export default {
 
   .form {
     display: flex;
+    margin-bottom: 10px;
   }
 
   .table-wrap {
